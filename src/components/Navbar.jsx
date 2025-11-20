@@ -23,7 +23,6 @@ export default function Navbar() {
     { label: "OUR SERVICES", dropdown: true },
     { label: "FAQ", href: "#faq" },
     { label: "CONTACT US", href: "#contact" },
-    { label: "CARRER", external: true },
     {
       label: "CAREER",
       href: "https://bayupayu.com/vacancy/NCG?page=1",
@@ -253,10 +252,10 @@ export default function Navbar() {
               textTransform: "none",
               "&:hover": { bgcolor: "#c60000" },
             }}
-            // onClick={() =>
-            //   (window.location.href =
-            //     "https://app.transport.thecanbrand.com/sign-in")
-            // }
+            onClick={() =>
+              (window.location.href =
+                "https://app.international.nepalcan.com/")
+            }
           >
             Login
           </Button>

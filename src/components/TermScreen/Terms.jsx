@@ -290,7 +290,7 @@ export default function terms() {
           If you have any questions about these Terms and Conditions, You can
           contact us:
         </p>
-        <p className="px-8">By email: support@logisitics.nepalcan.com</p>
+        <p className="px-8">By email: support@international.nepalcan.com</p>
         <p className="px-8">By phone number: 01-5970736</p>
       </div>
     </div>

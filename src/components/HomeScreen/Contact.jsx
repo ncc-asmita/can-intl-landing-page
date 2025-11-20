@@ -79,7 +79,7 @@ export default function Contact() {
             <Email className="text-[var(--custom-red)] mt-6 " />
             <div>
               <h3 className="font-bold mb-1 text-lg md:text-xl">Email:</h3>
-              <p>support@logisitics.nepalcan.com</p>
+              <p>support@international.nepalcan.com</p>
             </div>
           </div>
         </div>

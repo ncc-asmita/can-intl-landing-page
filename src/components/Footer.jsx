@@ -53,7 +53,7 @@ export default function Footer() {
           </div>
           <div className="flex items-center gap-2 mb-2">
             <Email fontSize="small" />
-            <p className="text-sm">support@logisitics.nepalcan.com</p>
+            <p className="text-sm">support@international.nepalcan.com</p>
           </div>
           <div className="flex items-center gap-2">
             <Phone fontSize="small" />
