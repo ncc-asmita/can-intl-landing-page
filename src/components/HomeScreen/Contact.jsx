@@ -198,7 +198,7 @@ export default function Contact() {
 
           {/* Map */}
           <div className="rounded-lg overflow-hidden shadow-md 
-            h-64 sm:h-72 lg:h-auto lg:h-full">
+            h-64 sm:h-72 lg:h-full">
             <iframe
               src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d883.2653398144864!2d85.3473702503366!3d27.684498372846182!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x39eb19a4f4fb0179%3A0xbe53904252e95812!2sNepal%20Can%20Move%20(NCM)%20-%20Tinkune%20%7C%20National%20%26%20International%20Courier%20Service!5e0!3m2!1sen!2snp!4v1763350890950!5m2!1sen!2snp"
               className="w-full h-full"
