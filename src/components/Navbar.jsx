@@ -32,7 +32,7 @@ export default function Navbar() {
     { label: "Land Transport", slug: "land-transport" },
     { label: "Customs Clearance", slug: "customs-clearance" },
     {label: "24/7 Customer Support",slug:"customer-support"},
-    {label: "Real Time Tracking", slug : "Real-Time-Tracking"}
+    {label: "Real Time Tracking", slug : "real-time-tracking"}
   ];
 
   const scrollToSection = (sectionId) => {
