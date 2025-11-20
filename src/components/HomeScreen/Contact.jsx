@@ -71,7 +71,7 @@ export default function Contact() {
             <Home className="text-[var(--custom-red)] mt-6 " />
             <div>
               <h3 className="font-bold mb-1 text-lg md:text-xl">Address:</h3>
-              <p>Muni Bhairab Marg, Kathmandu 44600</p>
+              <p>Nepal Can Move (NCM),Tinkune, Muni Bhairab Marg, Kathmandu 44600</p>
             </div>
           </div>
 
@@ -79,7 +79,7 @@ export default function Contact() {
             <Email className="text-[var(--custom-red)] mt-6 " />
             <div>
               <h3 className="font-bold mb-1 text-lg md:text-xl">Email:</h3>
-              <p>support@logisitics.nepalcan.com</p>
+              <p>support@international.nepalcan.com</p>
             </div>
           </div>
         </div>
