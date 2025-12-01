@@ -239,7 +239,7 @@ export default function Navbar() {
               "&:hover": { bgcolor: "#c60000" },
             }}
             onClick={() =>
-              window.open("https://can-intl.onrender.com/public", "_blank")
+              window.open("https://app.international.nepalcan.com/public", "_blank")
             }
           >
             Track My Order
