@@ -7,7 +7,7 @@ import { Phone, Home, Email } from "@mui/icons-material";
 import { toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
 
-export default function Contact() {
+export default function p() {
   const [loading, setLoading] = useState(false);
 
   const {
