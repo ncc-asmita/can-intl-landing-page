@@ -3,30 +3,34 @@
 import React, { useState } from "react";
 import { Button } from "@mui/material";
 
+import LocalShippingIcon from "@mui/icons-material/LocalShipping";
+import PublicIcon from "@mui/icons-material/Public";
+import BusinessCenterIcon from "@mui/icons-material/BusinessCenter";
+
 export default function ServicePage() {
   const [trackingNumber, setTrackingNumber] = useState("");
 
   const features = [
     {
-      icon: "📦",
+      icon: <LocalShippingIcon sx={{ fontSize: 50, color: "#d32f2f" }} />,
       title: "Fast & Reliable",
-      desc: "Experience quick and dependable shipping every time.",
+      desc: "Experience quick, efficient and dependable shipping every time.",
     },
     {
-      icon: "✈️",
+      icon: <PublicIcon sx={{ fontSize: 50, color: "#d32f2f" }} />,
       title: "Worldwide Delivery",
-      desc: "Delivering to over 200+ destinations globally.",
+      desc: "Delivering to over 200+ destinations around the world.",
     },
     {
-      icon: "💼",
+      icon: <BusinessCenterIcon sx={{ fontSize: 50, color: "#d32f2f" }} />,
       title: "Business Friendly",
-      desc: "Specialized solutions for companies and professionals.",
+      desc: "Tailor-made logistic solutions for professionals and companies.",
     },
   ];
+
   const handleTrack = () => {
     const orderId = trackingNumber.trim();
     if (!orderId) return;
-
     window.location.href = `https://app.international.nepalcan.com/public/tracking/${orderId}`;
   };
 
@@ -70,6 +74,7 @@ export default function ServicePage() {
           className="flex-grow px-4 py-3 text-gray-700 bg-white rounded-xl 
                  outline-none text-sm md:text-base shadow-md"
         />
+
         <Button
           variant="contained"
           onClick={handleTrack}
