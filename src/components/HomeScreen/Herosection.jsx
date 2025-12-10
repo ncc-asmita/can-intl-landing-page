@@ -6,13 +6,14 @@ import "react-multi-carousel/lib/styles.css";
 import { Button } from "@mui/material";
 import Image from "next/image";
 
-export default function HeroSection(){
-  const images = ["/heroSection/shipment.jpg","/heroSection/aeroplane.jpg"];
+export default function HeroSection() {
+  const images = ["/heroSection/shipment.jpg", "/heroSection/aeroplane.jpg"];
   const responsive = {
     desktop: { breakpoint: { max: 3000, min: 1024 }, items: 1 },
     tablet: { breakpoint: { max: 1024, min: 464 }, items: 1 },
     mobile: { breakpoint: { max: 464, min: 0 }, items: 1 },
   };
+
   return (
     <section className="relative h-screen w-full" id="discover">
       <Carousel
@@ -43,11 +44,12 @@ export default function HeroSection(){
         <h1 className="text-3xl md:text-5xl lg:text-6xl font-extrabold text-white drop-shadow-lg leading-tight">
           Welcome to{" "}
           <span className="text-[var(--custom-red)] font-extrabold drop-shadow-lg">
-            Can International
+            Nepal Can International
           </span>
         </h1>
         <p className="mt-4 text-base md:text-lg lg:text-xl text-gray-200 drop-shadow-md max-w-lg">
-          We make international shipping easier with a smart management system that streamlines the movement of goods worldwide.
+          We make international shipping easier with a smart management system
+          that streamlines the movement of goods worldwide.
         </p>
         <p className="mt-2 text-base md:text-lg lg:text-xl text-gray-200 drop-shadow-md max-w-lg">
           One solution to simplify all your global logistics.
@@ -74,6 +76,4 @@ export default function HeroSection(){
       </div>
     </section>
   );
-};
-
-
+}
