@@ -2,7 +2,7 @@
 
 import React, { useState, useEffect } from "react";
 import { useForm, Controller } from "react-hook-form";
-import { Button, TextField } from "@mui/material";
+import { Button, TextField, Typography } from "@mui/material";
 import { Phone, Home, Email } from "@mui/icons-material";
 import { toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
@@ -17,7 +17,8 @@ export default function p() {
 
   const pricingMessage = pricingData?.contactMessage || "";
   const destination = pricingData?.destination || null;
-  console.log(destination, "country");
+
+  const [formMessage, setFormMessage] = useState({ text: "", type: "" });
 
   const LIVE_URL = "https://app.international.nepalcan.com";
   const DEMO_URL = "https://can-intl.onrender.com";
@@ -64,6 +65,7 @@ export default function p() {
         inquiryOf: destination,
       };
       setLoading(true);
+      setFormMessage({ text: "", type: "" });
 
       const res = await fetch(`${BASE_URL}/api/public/contact`, {
         method: "POST",
@@ -73,11 +75,17 @@ export default function p() {
 
       const result = await res.json();
       if (!res.ok) {
-        alert(result.message || "Something went wrong");
+        setFormMessage({
+          text: result.message || "Something went wrong",
+          type: "error",
+        });
         return;
       }
 
-      alert("Thank you! We will contact you shortly.");
+      setFormMessage({
+        text: "Thank you! We will contact you shortly.",
+        type: "success",
+      });
 
       reset();
       dispatch(clearPricingData());
@@ -131,6 +139,17 @@ export default function p() {
             className="flex flex-col gap-6 bg-white p-6 rounded-lg shadow-md"
             onSubmit={handleSubmit(onSubmit)}
           >
+            {formMessage.text && (
+              <Typography
+                variant="body1"
+                sx={{
+                  color: formMessage.type === "success" ? "green" : "red",
+                  fontWeight: 500,
+                }}
+              >
+                {formMessage.text}
+              </Typography>
+            )}
             <Controller
               name="fullName"
               control={control}
