@@ -1,19 +1,35 @@
 "use client";
 
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import { useForm, Controller } from "react-hook-form";
 import { Button, TextField } from "@mui/material";
 import { Phone, Home, Email } from "@mui/icons-material";
 import { toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
+import { useSelector, useDispatch } from "react-redux";
+import { clearPricingData } from "@/store/pricingSlice";
 
 export default function p() {
   const [loading, setLoading] = useState(false);
+
+  const dispatch = useDispatch();
+  const pricingData = useSelector((state) => state.pricing);
+
+  const pricingMessage = pricingData?.contactMessage || "";
+  const destination = pricingData?.destination || null;
+  console.log(destination, "country");
+
+  const DEMO_URL = "https://can-intl.onrender.com";
+  const LOCAL_URL = "http://localhost:5002";
+
+  const BASE_URL =
+    process.env.NODE_ENV === "development" ? LOCAL_URL : DEMO_URL;
 
   const {
     control,
     handleSubmit,
     reset,
+    setValue,
     formState: { errors },
   } = useForm({
     defaultValues: {
@@ -25,23 +41,42 @@ export default function p() {
     },
   });
 
+  useEffect(() => {
+    if (pricingMessage) {
+      setValue("message", pricingMessage);
+    }
+  }, [pricingMessage, setValue]);
+
   const onSubmit = async (data) => {
     try {
+      const payload = {
+        name: data.fullName,
+        email: data.email,
+        phone: data.phone || "",
+        description: data.message,
+        inquiryOf: destination,
+      };
       setLoading(true);
-      const res = await fetch("https://postghost.onrender.com/webhook/OOVFOI", {
+
+      const res = await fetch(`${BASE_URL}/api/public/contact`, {
         method: "POST",
         headers: { "Content-Type": "application/json" },
-        body: JSON.stringify(data),
+        body: JSON.stringify(payload),
       });
 
+      const result = await res.json();
       if (!res.ok) {
-        throw new Error("Failed to submit form");
+        alert(result.message || "Something went wrong");
+        return;
       }
-      toast.success("Message sent successfully!");
+
+      alert("Thank you! We will contact you shortly.");
+
       reset();
-    } catch (err) {
-      console.error("Error:", err);
-      toast.error("Something went wrong!");
+      dispatch(clearPricingData());
+    } catch (error) {
+      console.error("Lead submit error:", error);
+      alert("Failed to submit. Please try again.");
     } finally {
       setLoading(false);
     }
@@ -107,7 +142,6 @@ export default function p() {
             <Controller
               name="subject"
               control={control}
-              rules={{ required: "Subject is required" }}
               render={({ field }) => (
                 <TextField
                   {...field}
@@ -144,7 +178,6 @@ export default function p() {
               name="email"
               control={control}
               rules={{
-                required: "Email is required",
                 pattern: {
                   value: /^[^\s@]+@[^\s@]+\.[^\s@]+$/,
                   message: "Enter a valid email",
