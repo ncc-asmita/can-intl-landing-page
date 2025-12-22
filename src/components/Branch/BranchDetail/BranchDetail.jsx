@@ -23,6 +23,7 @@ import LoadingSkeleton from "./LoadingSkeleton";
 import EmptyState from "./EmptyState";
 import BranchHero from "./BranchHero";
 import { FloatingOrderButton } from "./FloatingOrderButton";
+import { OrderPromptCard } from "./OrderPromptCards";
 
 export default function BranchDetail({ params }) {
   const router = useRouter();
@@ -114,11 +115,14 @@ export default function BranchDetail({ params }) {
   if (!branch) return <EmptyState type="not-found" />;
 
   const handleOrderClick = () => {
-    router.push("/#contact");
+    const message = `I want to inquire about sending parcel abroad from ${branch.name}`;
+
+    // Navigate to home page with message parameter and scroll to contact
+    router.push(`/?message=${encodeURIComponent(message)}#contact`);
   };
   return (
     <>
-      <FloatingOrderButton onClick={handleOrderClick}/>
+      <FloatingOrderButton onClick={handleOrderClick} />
       <div className="branch-theme min-h-screen bg-background text-foreground mt-8">
         <div className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8 py-10">
           {/* BACK BUTTON */}
@@ -222,6 +226,16 @@ export default function BranchDetail({ params }) {
               </div>
             </section>
           )}
+
+          <section
+            className="mb-12 animate-fade-in"
+            style={{ animationDelay: "400ms" }}
+          >
+            <OrderPromptCard
+              branchName={branch.name}
+              onOrderClick={handleOrderClick}
+            />
+          </section>
 
           {/* MAP */}
           {(branch.coordinates || branch.canAddress?.coordinates) && (

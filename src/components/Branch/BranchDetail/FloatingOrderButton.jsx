@@ -14,8 +14,11 @@ export function FloatingOrderButton({ onClick }) {
         >
           {/* Front side - "Want to place your order?" */}
           <div
-            className="flex items-center gap-2 bg-primary text-primary-foreground px-4 py-2.5 rounded-full shadow-lg"
-            style={{ backfaceVisibility: "hidden" }}
+            className="flex items-center gap-2 px-4 py-2.5 rounded-full shadow-lg text-white"
+            style={{
+              backfaceVisibility: "hidden",
+              backgroundColor: "var(--custom-red)",
+            }}
           >
             <ShoppingCart className="w-4 h-4" />
             <span className="font-semibold text-sm whitespace-nowrap">
@@ -25,8 +28,11 @@ export function FloatingOrderButton({ onClick }) {
 
           {/* Back side - "Click here!" */}
           <div
-            className="absolute inset-0 flex items-center justify-center gap-2 bg-primary text-primary-foreground px-4 py-2.5 rounded-full shadow-lg [transform:rotateY(180deg)]"
-            style={{ backfaceVisibility: "hidden" }}
+            className="absolute inset-0 flex items-center justify-center gap-2 px-4 py-2.5 rounded-full shadow-lg [transform:rotateY(180deg)] text-white"
+            style={{
+              backfaceVisibility: "hidden",
+              backgroundColor: "var(--custom-red)",
+            }}
           >
             <MousePointerClick className="w-4 h-4" />
             <span className="font-semibold text-sm whitespace-nowrap">

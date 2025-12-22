@@ -17,10 +17,9 @@ export default function BranchPage() {
 
   // Initialize state from URL parameters on component mount
   useEffect(() => {
-    const urlPage = searchParams.get('page');
-    const urlSearch = searchParams.get('search');
-    
-    
+    const urlPage = searchParams.get("page");
+    const urlSearch = searchParams.get("search");
+
     if (urlPage) {
       setPage(parseInt(urlPage, 10));
     }
@@ -61,7 +60,25 @@ export default function BranchPage() {
     fetchBranches();
   }, [page, debouncedSearch]);
 
- 
+  // Update URL when page or search changes
+  useEffect(() => {
+    const params = new URLSearchParams();
+    // Only add page parameter if it's not the first page
+    if (page > 1) {
+      params.set("page", page.toString());
+    }
+    // Only add search parameter if there's actual search text
+    if (debouncedSearch && debouncedSearch.trim()) {
+      params.set("search", debouncedSearch);
+    }
+
+    const queryString = params.toString();
+    const newUrl = queryString ? `/branch?${queryString}` : "/branch";
+
+    // Update URL without triggering a navigation
+    window.history.replaceState({}, "", newUrl);
+  }, [page, debouncedSearch]);
+
   const handleSearch = () => {
     setDebouncedSearch(search);
     setPage(1);
@@ -76,7 +93,6 @@ export default function BranchPage() {
         Our Branches
       </h1>
 
-     
       <div className="mb-6 relative">
         <input
           type="text"
@@ -131,7 +147,23 @@ export default function BranchPage() {
               branches.map((branch, i) => (
                 <tr
                   key={branch._id}
-                  onClick={() => router.push(`/branch/${branch._id}?page=${page}&search=${debouncedSearch}`)}
+                  onClick={() => {
+                    const params = new URLSearchParams();
+                    // Only add page parameter if it's not the first page
+                    if (page > 1) {
+                      params.set("page", page.toString());
+                    }
+                    // Only add search parameter if there's actual search text
+                    if (debouncedSearch && debouncedSearch.trim()) {
+                      params.set("search", debouncedSearch);
+                    }
+
+                    const queryString = params.toString();
+                    const url = queryString
+                      ? `/branch/${branch._id}?${queryString}`
+                      : `/branch/${branch._id}`;
+                    router.push(url);
+                  }}
                   className={`cursor-pointer ${
                     i % 2 === 0 ? "bg-white" : "bg-gray-50"
                   } hover:bg-red-50`}
@@ -151,7 +183,6 @@ export default function BranchPage() {
           </tbody>
         </table>
       </div>
-
 
       {pagination && (
         <div className="flex justify-center gap-6 mt-10">
