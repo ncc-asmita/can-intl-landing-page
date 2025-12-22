@@ -44,3 +44,56 @@ body {
 html {
   scroll-behavior: smooth;
 }
+
+/* BranchDetail custom variables & animations */
+.branch-theme {
+  --background: 0 0% 98%;
+  --foreground: 351 20% 15%;
+  --card: 0 0% 100%;
+  --card-foreground: 351 20% 15%;
+  --primary: 351 78% 49%;
+  --primary-foreground: 0 0% 100%;
+  --secondary: 351 20% 96%;
+  --secondary-foreground: 351 78% 49%;
+  --muted: 351 10% 94%;
+  --muted-foreground: 351 10% 45%;
+  --accent: 351 78% 95%;
+  --accent-foreground: 351 78% 40%;
+  --border: 351 15% 90%;
+  --brand: 351 78% 49%;
+  --brand-light: 351 78% 95%;
+  --brand-dark: 351 78% 35%;
+  --shadow-medium: 0 4px 6px -1px hsl(351 10% 10% / 0.08);
+  --shadow-elevated: 0 10px 15px -3px hsl(351 10% 10% / 0.1);
+  --shadow-brand: 0 4px 14px 0 hsl(351 78% 49% / 0.25);
+}
+
+/* BranchDetail animations */
+@keyframes fade-in {
+  from {
+    opacity: 0;
+    transform: translateY(10px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+@keyframes slide-up {
+  from {
+    opacity: 0;
+    transform: translateY(20px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+.animate-fade-in {
+  animation: fade-in 0.5s ease-out forwards;
+}
+.animate-slide-up {
+  animation: slide-up 0.6s ease-out forwards;
+}
