@@ -99,8 +99,7 @@ export default function BranchPage() {
             onChange={(e) => setSearch(e.target.value)}
             placeholder="Search branch by name, code, address..."
             onKeyDown={(e) => e.key === "Enter" && handleSearch()}
-            className="   w-full h-11 px-5 pr-10 text-sm border rounded-lg outline-none transition-all
-                          focus:ring-1 focus:ring-red-500 focus:border-red-500"
+            className="w-full h-11 px-5 pr-10 text-sm border rounded-lg outline-none transition-all focus:ring-1 focus:ring-red-500 focus:border-red-500"
             style={{
               borderColor: isSearching ? BRAND : "#e5e7eb",
             }}
