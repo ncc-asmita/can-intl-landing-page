@@ -235,7 +235,7 @@ export default function BranchDetail({ params }) {
           </section>
 
           {/* MAP */}
-          {(branch.coordinates || branch.canAddress?.coordinates) && (
+          {(branch.coordinates || branch.canAddress?.coordinates) && (branch.canAddress?.coordinates?.lat && branch.canAddress?.coordinates?.long) > 0 && (
             <section className="mb-14">
               <SectionHeader title="Location" subtitle="Find us here" />
               <LocationMap
