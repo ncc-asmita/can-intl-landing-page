@@ -11,6 +11,20 @@ export default {
       colors: {
         background: "var(--background)",
         foreground: "var(--foreground)",
+        primary: "hsl(var(--primary))",
+        border: "hsl(var(--border))",
+        muted: "hsl(var(--muted))",
+        "muted-foreground": "hsl(var(--muted-foreground))",
+        brand: {
+          DEFAULT: "hsl(var(--brand))",
+          light: "hsl(var(--brand-light))",
+          dark: "hsl(var(--brand-dark))",
+        },
+      },
+      boxShadow: {
+        medium: "var(--shadow-medium)",
+        elevated: "var(--shadow-elevated)",
+        brand: "var(--shadow-brand)",
       },
     },
   },

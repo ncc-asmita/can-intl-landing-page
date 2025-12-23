@@ -23,7 +23,8 @@ export default function Navbar() {
     { label: "OUR SERVICES", dropdown: true },
     { label: "FAQ", href: "#faq" },
     { label: "CONTACT US", href: "#contact" },
-    { label: "PRICING", href: "pricing" },
+    { label: "PRICING", href: "/pricing" },
+    {label: "OUR BRANCHES", href: "/branch"},
 
     {
       label: "CAREER",
@@ -59,7 +60,7 @@ export default function Navbar() {
 
     for (let i = navItems.length - 1; i >= 0; i--) {
       const href = navItems[i].href;
-      if (!href || navItems[i].external) continue;
+         if (!href || navItems[i].external || !href.startsWith("#")) continue;
       const element = document.querySelector(href);
       if (element) {
         const rect = element.getBoundingClientRect();

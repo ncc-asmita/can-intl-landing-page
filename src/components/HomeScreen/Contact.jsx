@@ -8,13 +8,16 @@ import { toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
 import { useSelector, useDispatch } from "react-redux";
 import { clearPricingData } from "@/store/pricingSlice";
+import { useSearchParams, useRouter } from "next/navigation";
 
 export default function p() {
   const [loading, setLoading] = useState(false);
+  const router = useRouter();
 
   const dispatch = useDispatch();
   const pricingData = useSelector((state) => state.pricing);
-
+  const searchParams = useSearchParams();
+  const messageFromBranch = searchParams.get("message");
   const pricingMessage = pricingData?.contactMessage || "";
   const destination = pricingData?.destination || null;
 
@@ -54,6 +57,16 @@ export default function p() {
       setValue("message", pricingMessage);
     }
   }, [pricingMessage, setValue]);
+
+  useEffect(() => {
+    if (messageFromBranch) {
+      setValue("message", messageFromBranch);
+      // Clear the message parameter from URL after setting it in the form
+      const url = new URL(window.location);
+      url.searchParams.delete('message');
+      window.history.replaceState({}, '', url.toString());
+    }
+  }, [messageFromBranch, setValue]);
 
   const onSubmit = async (data) => {
     try {
