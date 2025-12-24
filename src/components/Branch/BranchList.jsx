@@ -8,29 +8,17 @@ const BRAND = "#dc1e3e";
 export default function BranchPage() {
   const router = useRouter();
   const searchParams = useSearchParams();
-
-  /* -----------------------------
-     URL params
-  ------------------------------ */
   const urlPage = Number(searchParams.get("page")) || 1;
   const urlSearch = searchParams.get("search") || "";
-
-  /* -----------------------------
-     Local state
-  ------------------------------ */
   const [searchInput, setSearchInput] = useState(urlSearch);
   const [branches, setBranches] = useState([]);
   const [pagination, setPagination] = useState(null);
   const [loading, setLoading] = useState(false);
 
-  // Sync searchInput with URL when URL changes (e.g., back button)
   useEffect(() => {
     setSearchInput(urlSearch);
   }, [urlSearch]);
 
-  /* -----------------------------
-     Debounced search effect
-  ------------------------------ */
   useEffect(() => {
     const timer = setTimeout(() => {
       // Only update URL if the search input differs from URL
@@ -47,9 +35,6 @@ export default function BranchPage() {
     return () => clearTimeout(timer);
   }, [searchInput, urlSearch, router]);
 
-  /* -----------------------------
-     Fetch branches based on URL params
-  ------------------------------ */
   useEffect(() => {
     const fetchBranches = async () => {
       setLoading(true);
@@ -71,9 +56,6 @@ export default function BranchPage() {
     fetchBranches();
   }, [urlPage, urlSearch]);
 
-  /* -----------------------------
-     URL updater
-  ------------------------------ */
   const updateUrl = (nextPage, nextSearch) => {
     const params = new URLSearchParams();
 
